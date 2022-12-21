@@ -8,11 +8,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media(max-width: 700px) {
+      flex-direction: column-reverse;
+      gap: 20px;
+    }
   }
 
   &__logo {
     display: flex;
-
     img {
       margin-right: 15px;
     }
@@ -29,4 +33,10 @@
       color: #7b7b7b;
     }
   }
+    &__heading {
+      @media(max-width: 700px) {
+        text-align: center;
+      }
+      
+    }
 }

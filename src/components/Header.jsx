@@ -10,7 +10,7 @@ function Header() {
             </Link>
            
             
-            <div>
+            <div className='header__heading'>
               <h1>React Pizza</h1>
               <p>самая вкусная пицца во вселенной</p>
             </div>
