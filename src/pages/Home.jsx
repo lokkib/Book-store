@@ -11,14 +11,13 @@ export const Home = () => {
     useEffect(() => {
       fetch("https://639ca6d642e3ad69273867e2.mockapi.io/items")
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((array) => {
         setIsLoading(false)
         setItems(array)
       } );
-     
+      window.scrollTo(0, 0)
     },[isLoading])
     return (
         <>
