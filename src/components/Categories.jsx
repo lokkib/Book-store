@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-function Categories () {
+function Categories ({onClickCategory}) {
 
 const [activeCategory, setActiveCategory] = useState(0)
 
@@ -14,7 +14,7 @@ const clickedCategory = (index) => {
     return (
       <div className="categories">
                   <ul>
-                   {categories.map((el, index) => <li key={index} onClick={() => clickedCategory(index)} className={activeCategory === index? 'active' : ''}>{el}</li> )}
+                   {categories.map((el, index) => <li key={index} onClick={() => {clickedCategory(index); onClickCategory(index)}} className={activeCategory === index? 'active' : ''}>{el}</li> )}
                   </ul>
                 </div>
     )
