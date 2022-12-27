@@ -4,7 +4,8 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import { useEffect, useState } from "react";
 
-export const Home = () => {
+
+export const Home = ({ searchValue }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryID, setCategoryID] = useState(0);
@@ -32,6 +33,16 @@ export const Home = () => {
       });
     window.scrollTo(0, 0);
   }, [categoryID, categoryQuery, order, sortType, sorting]);
+
+  const pizzas = items
+    .filter((obj) =>
+      obj.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    )
+    .map((el) => <PizzaBlock key={el.id} {...el} />);
+  const skeletons = [...new Array(6)].map((el, index) => (
+    <Skeleton key={index} />
+  ));
+
   return (
     <>
       <div className="content__top">
@@ -39,11 +50,8 @@ export const Home = () => {
         <Sort valueSort={sortType} onClickSort={(i) => setSortType(i)} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">
-        {isLoading
-          ? [...new Array(6)].map((el, index) => <Skeleton key={index} />)
-          : items.map((el) => <PizzaBlock key={el.id} {...el} />)}
-      </div>
+      <div className="content__items">{isLoading ? skeletons : pizzas}</div>
+      
     </>
   );
 };

@@ -1,0 +1,14 @@
+.icon {
+  &:hover {
+    opacity: 1;
+	cursor: pointer;
+  }
+
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  right: 10px;
+  z-index: 1;
+  top: 10px;
+  opacity: 0.5;
+}
