@@ -1,0 +1,32 @@
+.pagination {
+  background-color: #ffdf8c;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 20px;
+  :global {
+    .selected {
+      background-color: white;
+      a {
+        color: rgb(74, 173, 230);
+      }
+    }
+  }
+}
+
+.pagination li {
+  background-color: rgb(74, 173, 230);
+  border-radius: 50%;
+  width: 22px;
+  cursor: pointer;
+  text-align: center;
+  a {
+    color: white;
+    font-weight: 600;
+  }
+  transition: transform .2s;
+}
+
+.pagination li:hover {
+	transform: scale(1.1);
+}
