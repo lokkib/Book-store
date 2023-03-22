@@ -4,21 +4,31 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
+import { SearchContext } from "../App";
+import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategoryId } from "../redux/slices/filterSlice";
 
-export const Home = ({ searchValue }) => {
+export const Home = () => {
+const dispatch = useDispatch();
+
+const categoryID = useSelector(state => state.filterInput.categoryId)
+const sortType = useSelector(state => state.filterInput.sort.sortProperty)
+
   const [items, setItems] = useState([]);
+  const {searchValue} = useContext(SearchContext)
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryID, setCategoryID] = useState(0);
+ 
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortType, setSortType] = useState({
-    name: "популярности",
-    sortProperty: "rating",
-  });
-  // https://639ca6d642e3ad69273867e2.mockapi.io/items
+  
+
+  const onChangeCategory = (id) => {
+      dispatch(setCategoryId(id))
+  }
 
   const categoryQuery = categoryID ? `category=${categoryID}` : "";
-  const sorting = sortType.sortProperty.replace("+", "");
-  const order = sortType.sortProperty.includes("+") ? "asc" : "desc";
+  const sorting = sortType.replace("+", "");
+  const order = sortType.includes("+") ? "asc" : "desc";
 
   useEffect(() => {
     setIsLoading(true);
@@ -53,8 +63,8 @@ export const Home = ({ searchValue }) => {
   return (
     <>
       <div className="content__top">
-        <Categories onClickCategory={(i) => setCategoryID(i)} />
-        <Sort valueSort={sortType} onClickSort={(i) => setSortType(i)} />
+        <Categories onClickCategory={(i) => onChangeCategory(i)} />
+        <Sort  />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>

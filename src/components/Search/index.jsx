@@ -1,9 +1,13 @@
 import styles from "./style.module.scss";
 import SearchIcon from "./SearchIcon";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ClearInputIcon from "./ClearInputIcon/ClearInputIcon";
-const Search = ({ setSearchValue, searchValue }) => {
+import { SearchContext } from "../../App";
+
+const Search = () => {
   const [placeholder, setPlaceholder] = useState("Поиск");
+
+  const {searchValue, setSearchValue} = useContext(SearchContext)
 
   return (
     <div className={styles.block}>
