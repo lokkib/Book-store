@@ -8,6 +8,7 @@ import { SearchContext } from "../App";
 import { useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryId } from "../redux/slices/filterSlice";
+import axios from 'axios'
 
 export const Home = () => {
 const dispatch = useDispatch();
@@ -32,18 +33,13 @@ const sortType = useSelector(state => state.filterInput.sort.sortProperty)
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      `https://63a5a154f8f3f6d4abfb73b9.mockapi.io/items?page=${currentPage}&limit=4&${categoryQuery}&sortBy=${sorting}&order=${order}`
-    )
-      .then((res) => {
-
-        return res.json();
-      })
-      .then((array) => {
-        setIsLoading(false);
-        setItems(array);
-      })
-      .catch(error => {throw error})
+    axios.get(`https://63a5a154f8f3f6d4abfb73b9.mockapi.io/items?page=${currentPage}&limit=4&${categoryQuery}&sortBy=${sorting}&order=${order}`)
+    .then(response => {
+      setIsLoading(false);
+          setItems(response.data);
+    })
+       .catch(error => {throw error})
+    
     window.scrollTo(0, 0);
   }, [categoryID, categoryQuery, order, sortType, sorting, currentPage]);
 

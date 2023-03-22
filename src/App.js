@@ -13,9 +13,6 @@ export const SearchContext = createContext();
 function App() {
   const [searchValue, setSearchValue] = useState("");
 
-  const count = useSelector((state) => state.filterInput.value)
-  console.log(count)
-  const dispatch = useDispatch()
 
   return (
     <div className="App">

@@ -1,27 +1,54 @@
 import styles from "./style.module.scss";
 import SearchIcon from "./SearchIcon";
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback } from "react";
 import ClearInputIcon from "./ClearInputIcon/ClearInputIcon";
 import { SearchContext } from "../../App";
+import { useRef } from "react";
+import debounce from "lodash.debounce";
 
 const Search = () => {
   const [placeholder, setPlaceholder] = useState("Поиск");
 
-  const {searchValue, setSearchValue} = useContext(SearchContext)
+  const [localValue, setLocalValue] = useState('')
+  const { searchValue, setSearchValue } = useContext(SearchContext);
+  const inputRef = useRef();
+
+  const clearInput = () => {
+    setSearchValue("");
+    setLocalValue("")
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
+  const onChangeInputRerender = useCallback(
+    debounce((str) => {
+      setSearchValue(str);
+    }, 600),
+    [],
+  );
+
+  const onChangeInput = e => {
+    setLocalValue(e.target.value);
+    onChangeInputRerender(e.target.value)
+  } 
+
+
 
   return (
     <div className={styles.block}>
       <SearchIcon />
       <input
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        ref={inputRef}
+        value={localValue}
+        onChange={(e) => onChangeInput(e)}
         onFocus={() => setPlaceholder("")}
         onBlur={() => setPlaceholder("Поиск")}
         className={styles.search}
         placeholder={placeholder}
       />
-      {searchValue && (
-        <div onClick={() => setSearchValue("")}>
+      {localValue && (
+        <div onClick={clearInput}>
           <ClearInputIcon />
         </div>
       )}
