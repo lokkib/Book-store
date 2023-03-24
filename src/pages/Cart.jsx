@@ -98,7 +98,7 @@ const itemsAdded = items.reduce((ac, el) => {
           </div>
         </div>
         <div className="cart__content__items">
-          {items.map(el => <CartItem key={el.id} {...el} />)}
+          {items.map(el => <CartItem key={Math.random()} {...el} />)}
           
         </div>
         <div className="cart__bottom">
