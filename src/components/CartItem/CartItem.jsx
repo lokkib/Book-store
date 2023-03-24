@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 const CartItem = ({price, id, type, imageUrl, title, count, size}) => {
-	const [activeSize, setActiveSize] = useState(null);
+	const [activeSize, setActiveSize] = useState(0);
 const dispatch = useDispatch()	
 
 const addOnClick = () => {
@@ -13,7 +13,7 @@ const addOnClick = () => {
         price,
         imageUrl,
         type,
-        size: activeSize
+        size
       }
 	dispatch(addItem(item))
 }
@@ -23,9 +23,9 @@ const onClickMinus = (id, price) => {
 	dispatch(minusItem([id, price]))
 }
 
-const onClickRemove = (id) => {
-	
-	dispatch(removeItem(id))
+const onClickRemove = (id, type, size) => {
+	console.log(type,size)
+	dispatch(removeItem([id, type, size]))
 }
 
   return (
@@ -83,7 +83,7 @@ const onClickRemove = (id) => {
       <div className="cart__item-price">
         <b>{price * count} ₽</b>
       </div>
-      <div onClick={() => onClickRemove(id)} className="cart__item-remove">
+      <div onClick={() => onClickRemove(id, type, size)} className="cart__item-remove">
         <div className="button button--outline button--circle">
           <svg
             width="10"
