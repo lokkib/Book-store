@@ -26,6 +26,7 @@ const Search = () => {
       setSearchValue(str);
     }, 600),
     [],
+   
   );
 
   const onChangeInput = e => {
