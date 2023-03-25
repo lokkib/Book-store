@@ -4,10 +4,10 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import { useEffect } from "react";
 import Pagination from "../components/Pagination";
-import { SearchContext } from "../App";
-import { useContext } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryID, setPage } from "../redux/slices/filterSlice";
+import { Link } from "react-router-dom";
 
 import { fetchProducts } from "../redux/api/itemsApi";
 
@@ -22,7 +22,7 @@ export const Home = () => {
 
   const sortType = sort.sortProperty;
 
-  const { searchValue } = useContext(SearchContext);
+    const {searchValue} = useSelector(state => state.filterInput)
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryID(id));
@@ -57,7 +57,7 @@ export const Home = () => {
     .filter((obj) =>
       obj.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     )
-    .map((el) => <PizzaBlock key={el.id} {...el} />);
+    .map((el) => <Link key={el.id} to={`/product/${el.id}`}><PizzaBlock  {...el} /></Link> );
 
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
