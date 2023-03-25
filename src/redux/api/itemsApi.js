@@ -4,6 +4,7 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk(
 	'product/fetchProductsStatus',
 	async (params) => {
+
 		const {currentPage,
 			categoryQuery,
 			sorting,

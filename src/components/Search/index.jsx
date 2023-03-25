@@ -1,20 +1,21 @@
 import styles from "./style.module.scss";
 import SearchIcon from "./SearchIcon";
-import { useContext, useState, useCallback } from "react";
+import {  useState, useCallback } from "react";
 import ClearInputIcon from "./ClearInputIcon/ClearInputIcon";
-import { SearchContext } from "../../App";
+import { useDispatch } from "react-redux";
 import { useRef } from "react";
 import debounce from "lodash.debounce";
+import { setSearchValue } from "../../redux/slices/filterSlice";
 
 const Search = () => {
   const [placeholder, setPlaceholder] = useState("Поиск");
-
+  const dispatch = useDispatch()
   const [localValue, setLocalValue] = useState('')
-  const { searchValue, setSearchValue } = useContext(SearchContext);
+
   const inputRef = useRef();
 
   const clearInput = () => {
-    setSearchValue("");
+    dispatch(setSearchValue(''));
     setLocalValue("")
     if (inputRef.current) {
       inputRef.current.focus();
@@ -23,7 +24,7 @@ const Search = () => {
 
   const onChangeInputRerender = useCallback(
     debounce((str) => {
-      setSearchValue(str);
+      dispatch(setSearchValue(str));
     }, 600),
     [],
    
