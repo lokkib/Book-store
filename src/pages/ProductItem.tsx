@@ -2,10 +2,13 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import styles from './style.module.scss'
+import { Product } from "../@types/types/Product"
+
+
 
 const ProductItem = () => {
     const navigate = useNavigate()
-    const [product, setProduct] = useState()
+    const [product, setProduct] = useState<Product>()
     const {id} = useParams()
 
     useEffect(() => {
@@ -27,7 +30,7 @@ const ProductItem = () => {
     }
  
         return <div>
-            <img src={product.imageUrl} alt='product image' />
+            <img src={product.imageUrl} alt='product' />
             <h2>{product.title}</h2>
             <h4>{product.price} ₽</h4>
         </div>
