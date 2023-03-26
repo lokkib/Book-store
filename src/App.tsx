@@ -1,11 +1,11 @@
 import './scss/app.scss';
-import Header from './components/Header';
 import { Home } from './pages/Home';
 import NotFound from './pages/NotFound';
 import { Routes, Route } from 'react-router-dom';
 import Cart from './pages/Cart';
 import ProductItem from './pages/ProductItem';
 import Layout from './components/layouts/Layout';
+
 
 function App() {
   return (
