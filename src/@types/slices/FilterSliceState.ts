@@ -1,4 +1,4 @@
-export type FilterSliceState = {
+export interface FilterSliceState  {
     searchValue: string,
     categoryID: number,
     currentPage: number,

@@ -16,10 +16,10 @@ const onClickClearItems = () => {
 }
 
 
-const itemsAdded = items.reduce((ac: number, el: Product) => {
+const itemsAdded =  items.reduce((ac: number, el: Product) => {
   ac += el.count
   return ac
-},0)
+},0) 
 
   return (
     <div className="container container--cart">

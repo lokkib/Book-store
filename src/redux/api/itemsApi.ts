@@ -1,24 +1,28 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { ProductSliceState } from "../../@types/slices/ProductSliceState";
+import { FetchProductArgs } from "../../@types/types/FetchProductArgs";
+import { Product } from "../../@types/types/Product";
+
 
 export const fetchProducts = createAsyncThunk(
 	'product/fetchProductsStatus',
-	async (params) => {
+	async (params: FetchProductArgs) => {
 
 		const {currentPage,
 			categoryQuery,
 			sorting,
 			order} = params;
 		const {data} = await axios
-		.get(
+		.get<Product[]>(
 		  `https://63a5a154f8f3f6d4abfb73b9.mockapi.io/items?page=${currentPage}&limit=4&${categoryQuery}&sortBy=${sorting}&order=${order}`
 		)
-	  return data
+	  return data as Product[]
 	}
   )
 
 
-const initialState = {
+const initialState: ProductSliceState = {
   items:[],
   status: 'loading'
 

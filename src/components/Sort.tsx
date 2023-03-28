@@ -2,10 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSorting } from "../redux/slices/filterSlice";
 import { RootState } from "../redux/store";
+import { SortItem } from "../@types/types/SortItem";
 
-type SortItem = {
-  name: string, sortProperty: string
-}
 
 export const list: SortItem[] = [
   { name: "популярности (DESC)", sortProperty: "rating" },
@@ -27,8 +25,8 @@ function Sort() {
 
   useEffect(() => {
 
-    const handleClickOutside = (e: React.Event<Document>) => {
-      if(!e.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if(sortRef.current && !e.composedPath().includes(sortRef.current)) {
         setIsVisible(false)
       }
     }

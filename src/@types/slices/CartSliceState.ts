@@ -1,6 +1,6 @@
 import { Product } from "../types/Product"
 
-export type CartSliceState = {
-    items: Product[] | [],
+export interface CartSliceState {
+    items: Product[] ,
     totalPrice: number
 } 

@@ -41,9 +41,6 @@ export const cartSlice = createSlice({
 		console.log(findItem)
 			if(findItem) {
 				findItem.count--
-				if(findItem.count <= 0) {
-					findItem.count = 0
-				}
 			}
 			
 			state.totalPrice = state.items.reduce((ac, el) => {

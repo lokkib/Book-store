@@ -4,7 +4,7 @@ import Search from './Search';
 import { useSelector } from 'react-redux';
 import { cartSelector } from '../redux/slices/cartSlice';
 import { useLocation } from 'react-router-dom';
-import { Product } from '../pages/ProductItem';
+import { Product } from '../@types/types/Product';
 
 function Header() {
   const {pathname} = useLocation()
