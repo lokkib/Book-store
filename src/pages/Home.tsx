@@ -4,16 +4,15 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import { useEffect } from "react";
 import Pagination from "../components/Pagination";
-
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { setCategoryID, setPage } from "../redux/slices/filterSlice";
-import { Link } from "react-router-dom";
 import { Product } from "../@types/types/Product";
 import { fetchProducts } from "../redux/api/itemsApi";
 import { RootState } from "../redux/store";
+import { useAppDispatch } from "../redux/store";
 
 export const Home = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { categoryID, sort, currentPage } = useSelector(
     (state: RootState) => state.filterInput
