@@ -24,9 +24,9 @@
     color: white;
     font-weight: 600;
   }
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .pagination li:hover {
-	transform: scale(1.1);
+  transform: scale(1.1);
 }

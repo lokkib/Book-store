@@ -1,6 +1,6 @@
-import { Product } from "../types/Product"
+import { Product } from '../types/Product'
 
 export interface CartSliceState {
-    items: Product[] ,
-    totalPrice: number
-} 
+  items: Product[]
+  totalPrice: number
+}

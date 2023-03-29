@@ -1,58 +1,45 @@
-import { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setSorting } from "../redux/slices/filterSlice";
-import { RootState } from "../redux/store";
-import { SortItem } from "../@types/types/SortItem";
-
+import React, { useEffect, useRef, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSorting } from '../redux/slices/filterSlice'
+import { RootState } from '../redux/store'
+import { SortItem } from '../@types/types/SortItem'
 
 export const list: SortItem[] = [
-  { name: "популярности (DESC)", sortProperty: "rating" },
-  { name: "популярности (ASC)", sortProperty: "+rating" },
-  { name: "цене (DESC)", sortProperty: "price" },
-  { name: "цене (ASC)", sortProperty: "+price" },
-  { name: "алфавиту (DESC)", sortProperty: "title" },
-  { name: "алфавиту (ASC)", sortProperty: "+title" },
-];
+  { name: 'популярности (DESC)', sortProperty: 'rating' },
+  { name: 'популярности (ASC)', sortProperty: '+rating' },
+  { name: 'цене (DESC)', sortProperty: 'price' },
+  { name: 'цене (ASC)', sortProperty: '+price' },
+  { name: 'алфавиту (DESC)', sortProperty: 'title' },
+  { name: 'алфавиту (ASC)', sortProperty: '+title' },
+]
 
-function Sort() {
-  const [isVisible, setIsVisible] = useState(false);
+const Sort = React.memo(() => {
+  const [isVisible, setIsVisible] = useState(false)
 
-  const dispatch = useDispatch();
-  const sort = useSelector((state: RootState) => state.filterInput.sort);
+  const dispatch = useDispatch()
+  const sort = useSelector((state: RootState) => state.filterInput.sort)
 
-
-  const sortRef = useRef<HTMLDivElement>(null);
+  const sortRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-
     const handleClickOutside = (e: MouseEvent) => {
-      if(sortRef.current && !e.composedPath().includes(sortRef.current)) {
+      if (sortRef.current && !e.composedPath().includes(sortRef.current)) {
         setIsVisible(false)
       }
     }
-      document.body.addEventListener('click', handleClickOutside)
+    document.body.addEventListener('click', handleClickOutside)
 
-      return () => {
-        document.body.removeEventListener('click', handleClickOutside)
-      }
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside)
+    }
   }, [])
 
 
-const list = [
-    { name: "популярности (DESC)", sortProperty: "rating" },
-    { name: "популярности (ASC)", sortProperty: "+rating" },
-    { name: "цене (DESC)", sortProperty: "price" },
-    { name: "цене (ASC)", sortProperty: "+price" },
-    { name: "алфавиту (DESC)", sortProperty: "title" },
-    { name: "алфавиту (ASC)", sortProperty: "+title" },
-  ];
-
   const clickFilter = (obj: SortItem) => {
-   dispatch(setSorting(obj))
+    dispatch(setSorting(obj))
 
-    setIsVisible(!isVisible);
-  };
-
+    setIsVisible(!isVisible)
+  }
 
   return (
     <div ref={sortRef} className="sort">
@@ -70,18 +57,22 @@ const list = [
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setIsVisible(!isVisible)}>{sort.name}</span>
+        <span role='button' tabIndex={0} onKeyDown={() => setIsVisible(!isVisible)} onClick={() => setIsVisible(!isVisible)}>{sort.name}</span>
       </div>
       {isVisible ? (
         <div className="sort__popup">
           <ul>
             {list.map((obj, index) => (
               <li
+              onKeyDown={() => {
+                clickFilter(obj)
+              }}
+              role='button' tabIndex={0}
                 onClick={() => {
-                  clickFilter(obj);
+                  clickFilter(obj)
                 }}
                 className={
-                  sort.sortProperty === obj.sortProperty ? "active" : ""
+                  sort.sortProperty === obj.sortProperty ? 'active' : ''
                 }
                 key={index}
               >
@@ -91,11 +82,10 @@ const list = [
           </ul>
         </div>
       ) : (
-        ""
+        ''
       )}
     </div>
-  );
-}
+  )
+})
 
-export default Sort;
-
+export default Sort
