@@ -1,9 +1,9 @@
-import { useSelector , useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import CartItem from '../components/CartItem/CartItem'
 import { cartSelector, clearItems } from '../redux/slices/cartSlice'
 import CartEmpty from '../components/CartEmpty/CartEmpty'
 import { Product } from '../@types/types/Product'
+import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -55,7 +55,13 @@ const Cart = () => {
               </svg>
               Корзина
             </h2>
-            <div role='button' onKeyDown={onClickClearItems} tabIndex={0} onClick={onClickClearItems} className="cart__clear">
+            <div
+              role="button"
+              onKeyDown={onClickClearItems}
+              tabIndex={0}
+              onClick={onClickClearItems}
+              className="cart__clear"
+            >
               <svg
                 width="20"
                 height="20"
@@ -113,31 +119,10 @@ const Cart = () => {
               </span>
             </div>
             <div className="cart__bottom-buttons">
-              <Link
-                to="/"
-                className="button button--outline button--add go-back-btn"
-              >
-                <svg
-                  width="8"
-                  height="14"
-                  viewBox="0 0 8 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7 13L1 6.93015L6.86175 1"
-                    stroke="#D3D3D3"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-
-                <span>Вернуться назад</span>
-              </Link>
               <div className="button pay-btn">
                 <span>Оплатить сейчас</span>
               </div>
+              <ButtonGoBack />
             </div>
           </div>
         </div>

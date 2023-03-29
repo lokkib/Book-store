@@ -1,6 +1,8 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import { persistStore, persistReducer ,
+import {
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,

@@ -4,14 +4,14 @@
 @import 'components/all';
 
 body {
-  background-color: $background;
+  background-image: $background-image;
 }
 
 .wrapper {
   width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
-  margin: 50px auto;
+  margin: 20px auto;
   border-radius: 10px;
   max-width: 1400px;
 }
@@ -270,7 +270,7 @@ body {
 
         &:last-of-type {
           b {
-            color: $orange;
+            color: $light-purple;
           }
         }
       }
@@ -280,38 +280,10 @@ body {
       display: flex;
       justify-content: space-between;
       margin-top: 40px;
-
-      .go-back-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 210px;
-
-        border-color: darken($color: $gray-line, $amount: 10);
-
-        span {
-          color: darken($color: $gray-line, $amount: 20);
-          font-weight: 500;
-          font-weight: 600;
-        }
-
-        &:hover {
-          background-color: darken($color: $gray-line, $amount: 90);
-          border-color: darken($color: $gray-line, $amount: 90);
-
-          span {
-            color: $gray-line;
-          }
-        }
-
-        svg {
-          margin-right: 12px;
-          path {
-            fill: transparent;
-            stroke-width: 2;
-          }
-        }
-      }
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      width: 210px;
 
       .pay-btn {
         font-size: 16px;
@@ -363,6 +335,8 @@ body {
 .button--add {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: fit-content;
 }
 
 .content__error {

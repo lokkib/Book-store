@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { CategoriesProps } from '../@types/props/CategoriesProps'
 
-
 const Categories = React.memo(({ onClickCategory }: CategoriesProps) => {
   const [activeCategory, setActiveCategory] = useState(0)
 
@@ -23,12 +22,12 @@ const Categories = React.memo(({ onClickCategory }: CategoriesProps) => {
       <ul>
         {categories.map((el, index) => (
           <li
-          onKeyDown={() => {
-            clickedCategory(index)
-            onClickCategory(index)
-          }}
-          role='button'
-          tabIndex={0}
+            onKeyDown={() => {
+              clickedCategory(index)
+              onClickCategory(index)
+            }}
+            role="button"
+            tabIndex={0}
             key={index}
             onClick={() => {
               clickedCategory(index)

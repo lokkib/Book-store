@@ -8,7 +8,7 @@ import Pagination from '../components/Pagination'
 import { setCategoryID, setPage } from '../redux/slices/filterSlice'
 import { Product } from '../@types/types/Product'
 import { fetchProducts } from '../redux/api/itemsApi'
-import { RootState , useAppDispatch } from '../redux/store'
+import { RootState, useAppDispatch } from '../redux/store'
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -73,11 +73,11 @@ const Home = () => {
       <h2 className="content__title">Все пиццы</h2>
       {status === 'error' && (
         <div className="content__error">
-            <h2>
-              Произошла ошибка <span>😕</span>{' '}
-            </h2>
-            <h2>Попробуйти зайти позже</h2>
-          </div>
+          <h2>
+            Произошла ошибка <span>😕</span>{' '}
+          </h2>
+          <h2>Попробуйти зайти позже</h2>
+        </div>
       )}
       <div className="content__items">
         {status === 'loading' ? skeletons : pizzas}
@@ -88,6 +88,5 @@ const Home = () => {
     </>
   )
 }
-
 
 export default Home

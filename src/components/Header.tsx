@@ -1,10 +1,9 @@
-import { Link , useLocation} from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import pizzaLogo from '../assets/img/pizza-logo.svg'
+import magazineLogo from '../assets/img/magazine-logo.svg'
 import Search from './Search'
 import { cartSelector } from '../redux/slices/cartSlice'
 import { Product } from '../@types/types/Product'
-
 
 const Header = () => {
   const { pathname } = useLocation()
@@ -23,16 +22,16 @@ const Header = () => {
       <div className="container">
         <div className="header__logo">
           <Link to="/">
-            <img width="38" src={pizzaLogo} alt="Pizza logo" />
+            <img width="38" src={magazineLogo} alt="Pizza logo" />
           </Link>
 
           <div className="header__heading">
-            <h1>React Pizza</h1>
-            <p>самая вкусная пицца во вселенной</p>
+            <h1>React bookstore</h1>
+            <p>занимательное чтиво!</p>
           </div>
         </div>
-        {pathname === '/'  && <Search />}
-       
+        {pathname === '/' && <Search />}
+
         <div className="header__cart">
           {pathname !== '/cart' && (
             <Link to="cart" className="button button--cart">

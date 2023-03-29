@@ -75,9 +75,9 @@ const CartItem = ({
         </button>
         <b>{count}</b>
         <div
-        onKeyDown={addOnClick}
-         tabIndex={0}
-        role='button'
+          onKeyDown={addOnClick}
+          tabIndex={0}
+          role="button"
           onClick={addOnClick}
           className="button button--outline button--circle cart__item-count-plus"
         >
@@ -102,9 +102,13 @@ const CartItem = ({
       <div className="cart__item-price">
         <b>{price * count} ₽</b>
       </div>
-      <div  onKeyDown={addOnClick}
-         tabIndex={0}
-        role='button' onClick={() => onClickRemove(id)} className="cart__item-remove">
+      <div
+        onKeyDown={addOnClick}
+        tabIndex={0}
+        role="button"
+        onClick={() => onClickRemove(id)}
+        className="cart__item-remove"
+      >
         <div className="button button--outline button--circle">
           <svg
             width="10"
