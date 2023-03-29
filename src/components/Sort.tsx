@@ -34,7 +34,6 @@ const Sort = React.memo(() => {
     }
   }, [])
 
-
   const clickFilter = (obj: SortItem) => {
     dispatch(setSorting(obj))
 
@@ -57,17 +56,25 @@ const Sort = React.memo(() => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span role='button' tabIndex={0} onKeyDown={() => setIsVisible(!isVisible)} onClick={() => setIsVisible(!isVisible)}>{sort.name}</span>
+        <span
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => setIsVisible(!isVisible)}
+          onClick={() => setIsVisible(!isVisible)}
+        >
+          {sort.name}
+        </span>
       </div>
       {isVisible ? (
         <div className="sort__popup">
           <ul>
             {list.map((obj, index) => (
               <li
-              onKeyDown={() => {
-                clickFilter(obj)
-              }}
-              role='button' tabIndex={0}
+                onKeyDown={() => {
+                  clickFilter(obj)
+                }}
+                role="button"
+                tabIndex={0}
                 onClick={() => {
                   clickFilter(obj)
                 }}

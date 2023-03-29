@@ -57,9 +57,9 @@ const ProductBlock = ({
           <ul>
             {types.map((el, index) => (
               <li
-              onKeyDown={() => clickActiveTypeDough(index)}
-              role='button'
-              tabIndex={0}
+                onKeyDown={() => clickActiveTypeDough(index)}
+                role="button"
+                tabIndex={0}
                 key={index}
                 onClick={() => clickActiveTypeDough(index)}
                 className={activeType === index ? 'active' : ''}
@@ -71,9 +71,9 @@ const ProductBlock = ({
           <ul>
             {sizes.map((size, index) => (
               <li
-              onKeyDown={() => clickActiveSize(index)}
-              role='button'
-              tabIndex={0}
+                onKeyDown={() => clickActiveSize(index)}
+                role="button"
+                tabIndex={0}
                 key={index}
                 onClick={() => clickActiveSize(index)}
                 className={activeSize === index ? 'active' : ''}

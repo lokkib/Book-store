@@ -2,7 +2,7 @@
 
 .button {
   display: inline-block;
-  background-color: $orange;
+  background-color: $light-purple;
   border-radius: 30px;
   padding: 10px 20px;
   min-width: 100px;
@@ -26,11 +26,11 @@
   }
 
   &:hover {
-    background-color: darken($orange, 8%);
+    background-color: #3d70b2;
   }
 
   &:active {
-    background-color: darken($orange, 12%);
+    background-color: darken($light-purple, 12%);
     transform: translateY(1px);
   }
 
@@ -55,21 +55,21 @@
   }
 
   &--outline {
-    background-color: #fff;
-    border-color: $orange;
+    background-color: white;
+    border-color: $light-purple;
     &,
     span {
-      color: $orange;
+      color: $light-purple;
     }
 
     svg {
       path {
-        fill: $orange;
+        fill: $light-purple;
       }
     }
 
     &:hover {
-      background-color: $orange;
+      background-color: #3d70b2;
 
       &,
       span {
@@ -84,7 +84,7 @@
     }
 
     &:active {
-      background-color: darken($orange, 8%);
+      background-color: darken($light-purple, 8%);
     }
   }
 
@@ -113,14 +113,14 @@
     &:hover {
       i {
         background-color: #fff;
-        color: $orange;
+        color: $light-purple;
       }
     }
 
     i {
       display: inline-block;
       border-radius: 30px;
-      background-color: $orange;
+      background-color: $light-purple;
       color: #fff;
       font-weight: 600;
       width: 22px;
@@ -139,6 +139,7 @@
   }
 
   &--cart {
+    background-color: $light-purple;
     display: flex;
     align-items: center;
     line-height: 23px;

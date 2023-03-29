@@ -1,4 +1,4 @@
-import { useState, useCallback , useRef } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import ClearInputIcon from './ClearInputIcon/ClearInputIcon'
