@@ -1,7 +1,7 @@
-@import "variables";
-@import "libs/normalize";
+@import 'variables';
+@import 'libs/normalize';
 
-@import "components/all";
+@import 'components/all';
 
 body {
   background-color: $background;
@@ -193,18 +193,17 @@ body {
             transform: none;
           }
 
+          svg path {
+            fill: #787878;
+          }
+
+          &:hover {
+            background-color: transparent;
+
             svg path {
-              fill: #787878
+              fill: #787878;
             }
-
-            &:hover {
-              background-color: transparent;
-
-              svg path {
-                fill: #787878
-              }
-            }
-          
+          }
         }
       }
 

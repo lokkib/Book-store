@@ -1,3 +1,3 @@
 export type CategoriesProps = {
-    onClickCategory: (i: number) => void
-  }
+  onClickCategory: (i: number) => void
+}

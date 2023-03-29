@@ -1,3 +1,4 @@
 export type SortItem = {
-	name: string, sortProperty: string
-  }
+  name: string
+  sortProperty: string
+}

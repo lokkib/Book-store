@@ -1,4 +1,4 @@
 export type PaginationProps = {
-    value: number;
-    fetchingPageOnClick: (v: number) => void
+  value: number
+  fetchingPageOnClick: (v: number) => void
 }

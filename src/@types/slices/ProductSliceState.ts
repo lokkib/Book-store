@@ -1,5 +1,6 @@
-import { Product } from "../types/Product"
+import { Product } from '../types/Product'
+
 export interface ProductSliceState {
-	items: Product[],
+  items: Product[]
   status: string
 }

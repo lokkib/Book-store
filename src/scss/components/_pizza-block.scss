@@ -5,7 +5,7 @@
   text-align: center;
   margin-bottom: 65px;
 
-  @media(width: 280px) and (width: 400px) {
+  @media (width: 280px) and (width: 400px) {
     width: 260px;
   }
 
@@ -15,7 +15,6 @@
     @media (max-width: 400px) {
       width: 200px;
     }
-   
   }
 
   &__image {
@@ -33,7 +32,7 @@
     letter-spacing: 1%;
     margin-bottom: 20px;
 
-    @media(max-width: 400px) {
+    @media (max-width: 400px) {
       font-size: 14px;
     }
   }
@@ -83,7 +82,7 @@
     line-height: 27px;
     letter-spacing: 0.015em;
 
-    @media(max-width: 400px) {
+    @media (max-width: 400px) {
       font-size: 14px;
     }
   }

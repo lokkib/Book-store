@@ -1,50 +1,61 @@
-import { addItem, minusItem, removeItem } from "../../redux/slices/cartSlice";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { CartItemProps } from "../../@types/props/CartItemProps";
-import clsx from 'clsx';
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import clsx from 'clsx'
+import { CartItemProps } from '../../@types/props/CartItemProps'
+import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice'
 
-const CartItem = ({price, id, type, imageUrl, title, count, size}: CartItemProps) => {
-	const [activeSize] = useState(null);
-const dispatch = useDispatch()	
+const CartItem = ({
+  price,
+  id,
+  type,
+  imageUrl,
+  title,
+  count,
+  size,
+}: CartItemProps) => {
+  const [activeSize] = useState(null)
+  const dispatch = useDispatch()
 
-const addOnClick = () => {
-	const item = {
-        id,
-        title,
-        price,
-        imageUrl,
-        type,
-        size: activeSize
-      }
-	dispatch(addItem(item))
-}
+  const addOnClick = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+      type,
+      size: activeSize,
+    }
+    dispatch(addItem(item))
+  }
 
-const onClickMinus = (id: string, price: number) => {
-	
-	dispatch(minusItem([id, price]))
-}
+  const onClickMinus = (itemId: string, itemPrice: number) => {
+    dispatch(minusItem([itemId, itemPrice]))
+  }
 
-const onClickRemove = (id: string) => {
-	
-	dispatch(removeItem(id))
-}
+  const onClickRemove = (itemId: string) => {
+    dispatch(removeItem(itemId))
+  }
 
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img
-          className="pizza-block__image"
-          src={imageUrl}
-          alt="Pizza"
-        />
+        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
-        <p>{type}, {size} см.</p>
+        <p>
+          {type}, {size} см.
+        </p>
       </div>
       <div className="cart__item-count">
-        <button disabled={count === 1} onClick={() => onClickMinus(id, price)} className={clsx(' button button--outline button--circle cart__item-count-minus', {'cart__item-count-minus--disabled': count === 1})}>
+        <button
+          disabled={count === 1}
+          onClick={() => onClickMinus(id, price)}
+          className={clsx(
+            ' button button--outline button--circle cart__item-count-minus',
+            { 'cart__item-count-minus--disabled': count === 1 }
+          )}
+        >
           <svg
             width="10"
             height="10"
@@ -63,7 +74,13 @@ const onClickRemove = (id: string) => {
           </svg>
         </button>
         <b>{count}</b>
-        <div onClick={addOnClick} className="button button--outline button--circle cart__item-count-plus">
+        <div
+        onKeyDown={addOnClick}
+         tabIndex={0}
+        role='button'
+          onClick={addOnClick}
+          className="button button--outline button--circle cart__item-count-plus"
+        >
           <svg
             width="10"
             height="10"
@@ -85,7 +102,9 @@ const onClickRemove = (id: string) => {
       <div className="cart__item-price">
         <b>{price * count} ₽</b>
       </div>
-      <div onClick={() => onClickRemove(id)} className="cart__item-remove">
+      <div  onKeyDown={addOnClick}
+         tabIndex={0}
+        role='button' onClick={() => onClickRemove(id)} className="cart__item-remove">
         <div className="button button--outline button--circle">
           <svg
             width="10"
@@ -106,7 +125,7 @@ const onClickRemove = (id: string) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem

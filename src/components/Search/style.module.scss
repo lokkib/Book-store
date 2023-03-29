@@ -1,17 +1,15 @@
-
 .block {
-	position: relative;
+  position: relative;
 }
 
 .search {
-	padding: 8px 30px;
-	border-radius: 30px;
-	border: 1px solid black;
-	width: 250px;
-
+  padding: 8px 30px;
+  border-radius: 30px;
+  border: 1px solid black;
+  width: 250px;
 }
 
 .search::placeholder {
-	font-size: 14px;
-	opacity: 0.7;
+  font-size: 14px;
+  opacity: 0.7;
 }

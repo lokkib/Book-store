@@ -1,61 +1,68 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../../redux/slices/cartSlice";
-import { ProductBlockProps } from "../../@types/props/ProductBlockProps";
-import { RootState } from "../../redux/store";
-import { Link } from "react-router-dom";
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { addItem } from '../../redux/slices/cartSlice'
+import { ProductBlockProps } from '../../@types/props/ProductBlockProps'
+import { RootState } from '../../redux/store'
 
-const PizzaBlock = ({ id, title, price, imageUrl, sizes, types }: ProductBlockProps) => {
-  const [activeType, setActiveType] = useState(0);
-  const [activeSize, setActiveSize] = useState(0);
-  const typeNames = ["тонкое", "традиционное"];
+const ProductBlock = ({
+  id,
+  title,
+  price,
+  imageUrl,
+  sizes,
+  types,
+}: ProductBlockProps) => {
+  const [activeType, setActiveType] = useState(0)
+  const [activeSize, setActiveSize] = useState(0)
+  const typeNames = ['тонкое', 'традиционное']
   const dispatch = useDispatch()
 
-  const item = useSelector((state: RootState) => state.cart.items.find(el => el.id === id)) 
-  
+  const item = useSelector((state: RootState) =>
+    state.cart.items.find((el) => el.id === id)
+  )
 
   const count = item ? item.count : 0
 
-  const items = useSelector((state: RootState) => state.cart.items)
-  console.log(items)
-
   const clickActiveTypeDough = (index: number) => {
-    setActiveType(index);
-  };
-
-  const clickActiveSize = (index: number) => {
-    setActiveSize(index);
-  };
-
-  const onClickAdd = () => {
-      const item = {
-        id,
-        title,
-        price,
-        imageUrl,
-        type: typeNames[activeType],
-        size: sizes[activeSize]
-      }
-
-      dispatch(addItem(item))
+    setActiveType(index)
   }
 
+  const clickActiveSize = (index: number) => {
+    setActiveSize(index)
+  }
+
+  const onClickAdd = () => {
+    const itemProperties = {
+      id,
+      title,
+      price,
+      imageUrl,
+      type: typeNames[activeType],
+      size: sizes[activeSize],
+    }
+
+    dispatch(addItem(itemProperties))
+  }
 
   return (
-    <div className='pizza-block-wrapper'>
+    <div className="pizza-block-wrapper">
       <div className="pizza-block">
         <Link to={`/product/${id}`}>
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+          <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
         </Link>
-        
+
         <h4 className="pizza-block__title">{title}</h4>
         <div className="pizza-block__selector">
           <ul>
             {types.map((el, index) => (
               <li
+              onKeyDown={() => clickActiveTypeDough(index)}
+              role='button'
+              tabIndex={0}
                 key={index}
                 onClick={() => clickActiveTypeDough(index)}
-                className={activeType === index ? "active" : ""}
+                className={activeType === index ? 'active' : ''}
               >
                 {typeNames[el]}
               </li>
@@ -64,9 +71,12 @@ const PizzaBlock = ({ id, title, price, imageUrl, sizes, types }: ProductBlockPr
           <ul>
             {sizes.map((size, index) => (
               <li
+              onKeyDown={() => clickActiveSize(index)}
+              role='button'
+              tabIndex={0}
                 key={index}
                 onClick={() => clickActiveSize(index)}
-                className={activeSize === index ? "active" : ""}
+                className={activeSize === index ? 'active' : ''}
               >
                 {size}
               </li>
@@ -75,7 +85,10 @@ const PizzaBlock = ({ id, title, price, imageUrl, sizes, types }: ProductBlockPr
         </div>
         <div className="pizza-block__bottom">
           <div className="pizza-block__price">от {price} ₽</div>
-          <button onClick={onClickAdd} className="button button--outline button--add">
+          <button
+            onClick={onClickAdd}
+            className="button button--outline button--add"
+          >
             <svg
               width="12"
               height="12"
@@ -90,12 +103,11 @@ const PizzaBlock = ({ id, title, price, imageUrl, sizes, types }: ProductBlockPr
             </svg>
             <span>Добавить</span>
             {!!count && <i>{count}</i>}
-            
           </button>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default PizzaBlock;
+export default ProductBlock

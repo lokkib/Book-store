@@ -1,44 +1,43 @@
+import { Link , useLocation} from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import pizzaLogo from '../assets/img/pizza-logo.svg'
-import { Link } from 'react-router-dom';
-import Search from './Search';
-import { useSelector } from 'react-redux';
-import { cartSelector } from '../redux/slices/cartSlice';
-import { useLocation } from 'react-router-dom';
-import { Product } from '../@types/types/Product';
+import Search from './Search'
+import { cartSelector } from '../redux/slices/cartSlice'
+import { Product } from '../@types/types/Product'
 
-function Header() {
-  const {pathname} = useLocation()
 
-  const {items, totalPrice} = useSelector(cartSelector);
+const Header = () => {
+  const { pathname } = useLocation()
+  const { items, totalPrice } = useSelector(cartSelector)
 
   const itemsAdded = items.reduce((ac: number, el: Product) => {
-    if(el.count) {
+    if (el.count) {
       ac += el.count
     }
 
     return ac
-},0)
+  }, 0)
 
-    return (
-      <div className="header">
-        <div className="container">
-          <div className="header__logo">
-            <Link to='/'>
+  return (
+    <div className="header">
+      <div className="container">
+        <div className="header__logo">
+          <Link to="/">
             <img width="38" src={pizzaLogo} alt="Pizza logo" />
-            </Link>
-           
-            
-            <div className='header__heading'>
-              <h1>React Pizza</h1>
-              <p>самая вкусная пицца во вселенной</p>
-            </div>
+          </Link>
+
+          <div className="header__heading">
+            <h1>React Pizza</h1>
+            <p>самая вкусная пицца во вселенной</p>
           </div>
-          <Search  />
-          <div className="header__cart">
-          {pathname !== '/cart' && 
+        </div>
+        {pathname === '/'  && <Search />}
+       
+        <div className="header__cart">
+          {pathname !== '/cart' && (
             <Link to="cart" className="button button--cart">
               <span>{totalPrice} ₽</span>
-              <div className="button__delimiter"></div>
+              <div className="button__delimiter" />
               <svg
                 width="18"
                 height="18"
@@ -70,11 +69,11 @@ function Header() {
               </svg>
               <span>{itemsAdded}</span>
             </Link>
-          }
-          </div>
+          )}
         </div>
       </div>
-    );
-  }
+    </div>
+  )
+}
 
-  export default Header
+export default Header

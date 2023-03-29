@@ -1,6 +1,6 @@
-import ReactPaginate from "react-paginate";
-import styles from "./style.module.scss";
-import { PaginationProps } from "../../@types/props/PaginationProps";
+import ReactPaginate from 'react-paginate'
+import styles from './style.module.scss'
+import { PaginationProps } from '../../@types/props/PaginationProps'
 
 const Pagination = ({ value, fetchingPageOnClick }: PaginationProps) => {
   return (
@@ -13,9 +13,8 @@ const Pagination = ({ value, fetchingPageOnClick }: PaginationProps) => {
       pageCount={3}
       forcePage={value - 1}
       previousLabel="<"
-  
     />
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination
