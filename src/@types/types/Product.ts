@@ -1,9 +1,18 @@
+type FormatPrice = {
+  price: string
+}
+
+export type Format = {
+  string: FormatPrice
+}
+
 export type Product = {
   id: string
-  imageUrl: string
+  imageUrl: string[]
   title: string
-  types: number[]
-  sizes: number[]
+  author: string
+  languages: number[]
+  formats: Format[]
   price: number
   category: number
   rating: number

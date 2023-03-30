@@ -70,7 +70,7 @@ const Home = () => {
         <Categories onClickCategory={onChangeCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Все книги</h2>
       {status === 'error' && (
         <div className="content__error">
           <h2>

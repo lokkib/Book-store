@@ -7,7 +7,7 @@ import styles from './style.module.scss'
 import { setSearchValue } from '../../redux/slices/filterSlice'
 
 const Search = () => {
-  const [placeholder, setPlaceholder] = useState('Поиск')
+  const [placeholder, setPlaceholder] = useState('Поиск по автору')
   const dispatch = useDispatch()
   const [localValue, setLocalValue] = useState('')
 
@@ -40,7 +40,7 @@ const Search = () => {
         value={localValue}
         onChange={(e) => onChangeInput(e)}
         onFocus={() => setPlaceholder('')}
-        onBlur={() => setPlaceholder('Поиск')}
+        onBlur={() => setPlaceholder('Поиск по автору')}
         className={styles.search}
         placeholder={placeholder}
       />
