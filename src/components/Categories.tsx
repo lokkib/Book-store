@@ -6,11 +6,11 @@ const Categories = React.memo(({ onClickCategory }: CategoriesProps) => {
 
   const categories = [
     'Все',
-    'Мясные',
-    'Вегетарианская',
-    'Гриль',
-    'Острые',
-    'Закрытые',
+    'Книги для детей',
+    'Зарубежные детективы',
+    'Иностранные языки',
+    'Триллеры',
+    'Бизнес-книги',
   ]
 
   const clickedCategory = (index: number) => {

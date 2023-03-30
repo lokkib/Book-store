@@ -6,14 +6,16 @@ import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice'
 
 const CartItem = ({
   price,
+  author,
   id,
-  type,
   imageUrl,
   title,
   count,
-  size,
+  formats,
+  languages,
 }: CartItemProps) => {
-  const [activeSize] = useState(null)
+  const [activeFormat] = useState(0)
+  const [activeLanguage, setActiveLanguage] = useState(0)
   const dispatch = useDispatch()
 
   const addOnClick = () => {
@@ -22,8 +24,9 @@ const CartItem = ({
       title,
       price,
       imageUrl,
-      type,
-      size: activeSize,
+      author,
+      language: languages[activeLanguage],
+      format: formats[activeFormat],
     }
     dispatch(addItem(item))
   }
@@ -43,9 +46,8 @@ const CartItem = ({
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
-        <p>
-          {type}, {size} см.
-        </p>
+        <p>{author}</p>
+        <p>см.</p>
       </div>
       <div className="cart__item-count">
         <button

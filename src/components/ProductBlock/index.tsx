@@ -9,13 +9,16 @@ const ProductBlock = ({
   id,
   title,
   price,
+  author,
   imageUrl,
-  sizes,
-  types,
+  formats,
+  languages,
 }: ProductBlockProps) => {
-  const [activeType, setActiveType] = useState(0)
-  const [activeSize, setActiveSize] = useState(0)
-  const typeNames = ['тонкое', 'традиционное']
+  const [activeLanguage, setActiveLanguage] = useState(0)
+  const [activeFormat, setActiveFormat] = useState(0)
+  const [activeImage, setActiveImage] = useState(0)
+  const languageTypes = ['русский', 'английский']
+  const formatNames = ['бумажная', 'электронная', 'аудиокнига']
   const dispatch = useDispatch()
 
   const item = useSelector((state: RootState) =>
@@ -24,22 +27,24 @@ const ProductBlock = ({
 
   const count = item ? item.count : 0
 
-  const clickActiveTypeDough = (index: number) => {
-    setActiveType(index)
+  const clickActiveLanguage = (index: number) => {
+    setActiveLanguage(index)
+    setActiveImage(index)
   }
 
-  const clickActiveSize = (index: number) => {
-    setActiveSize(index)
+  const clickActiveFormat = (index: number) => {
+    setActiveFormat(index)
   }
 
   const onClickAdd = () => {
     const itemProperties = {
       id,
+      author,
       title,
       price,
       imageUrl,
-      type: typeNames[activeType],
-      size: sizes[activeSize],
+      language: languages[activeLanguage],
+      format: formats[activeFormat],
     }
 
     dispatch(addItem(itemProperties))
@@ -49,37 +54,45 @@ const ProductBlock = ({
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
         <Link to={`/product/${id}`}>
-          <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+          <img
+            className="pizza-block__image"
+            src={imageUrl[activeImage]}
+            alt="Pizza"
+          />
         </Link>
 
-        <h4 className="pizza-block__title">{title}</h4>
+        <h4 className="pizza-block__title">{author}</h4>
+        <p>{title}</p>
         <div className="pizza-block__selector">
           <ul>
-            {types.map((el, index) => (
+            {languages.map((el, index) => (
               <li
-                onKeyDown={() => clickActiveTypeDough(index)}
+                onKeyDown={() => clickActiveLanguage(index)}
                 role="button"
                 tabIndex={0}
                 key={index}
-                onClick={() => clickActiveTypeDough(index)}
-                className={activeType === index ? 'active' : ''}
+                onClick={() => clickActiveLanguage(index)}
+                className={activeLanguage === index ? 'active' : ''}
               >
-                {typeNames[el]}
+                {languageTypes[el]}
               </li>
             ))}
           </ul>
           <ul>
-            {sizes.map((size, index) => (
-              <li
-                onKeyDown={() => clickActiveSize(index)}
+            {formats.map((formatItem, index) => (
+              <div
+                onKeyDown={() => clickActiveFormat(index)}
                 role="button"
                 tabIndex={0}
                 key={index}
-                onClick={() => clickActiveSize(index)}
-                className={activeSize === index ? 'active' : ''}
+                onClick={() => clickActiveFormat(index)}
+                className={activeFormat === index ? 'active' : ''}
               >
-                {size}
-              </li>
+                <li>{formatNames[index]}</li>
+                <p className="product-block__format-price">
+                  <i>{formatItem[formatNames[index]].price}</i>
+                </p>
+              </div>
             ))}
           </ul>
         </div>

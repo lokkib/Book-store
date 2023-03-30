@@ -1,9 +1,18 @@
+type FormatPrice = {
+  price: string
+}
+
+type Format = {
+  string: FormatPrice
+}
+
 export type ProductBlockProps = {
   id: string
-  imageUrl: string
+  imageUrl: string[]
+  author: string
   title: string
-  types: number[]
-  sizes: number[]
+  languages: number[]
+  formats: Format[]
   price: number
   category: number
   rating: number
