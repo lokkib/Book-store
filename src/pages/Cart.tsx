@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { motion } from 'framer-motion'
 import CartItem from '../components/CartItem/CartItem'
 import { cartSelector, clearItems } from '../redux/slices/cartSlice'
 import CartEmpty from '../components/CartEmpty/CartEmpty'
@@ -19,7 +20,13 @@ const Cart = () => {
   }, 0)
 
   return (
-    <div className="container container--cart">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      className="container container--cart"
+    >
       {items.length ? (
         <div className="cart">
           <div className="cart__top">
@@ -129,7 +136,7 @@ const Cart = () => {
       ) : (
         <CartEmpty />
       )}
-    </div>
+    </motion.div>
   )
 }
 

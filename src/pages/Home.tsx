@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { motion } from 'framer-motion'
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
 import ProductBlock from '../components/ProductBlock'
@@ -52,11 +53,25 @@ const Home = () => {
     window.scrollTo(0, 0)
 
     getProducts()
+    
   }, [categoryID, sortType, currentPage])
+
+  useEffect(() => {
+    return () => {
+      dispatch(setCategoryID(0))
+      dispatch(setPage(1))
+    }
+  },[])
 
   const pizzas = items
     .filter((obj: Product) =>
-      obj.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+      obj.author
+        ? obj.author
+            .toLocaleLowerCase()
+            .startsWith(searchValue.toLocaleLowerCase())
+        : obj.title
+            .toLocaleLowerCase()
+            .startsWith(searchValue.toLocaleLowerCase())
     )
     .map((el: Product) => <ProductBlock key={el.id} {...el} />)
 
@@ -65,7 +80,12 @@ const Home = () => {
   ))
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div className="content__top">
         <Categories onClickCategory={onChangeCategory} />
         <Sort />
@@ -85,7 +105,7 @@ const Home = () => {
       {status === 'access' && (
         <Pagination value={currentPage} fetchingPageOnClick={onChangePage} />
       )}
-    </>
+    </motion.div>
   )
 }
 

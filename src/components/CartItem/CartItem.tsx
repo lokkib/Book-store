@@ -5,18 +5,21 @@ import { CartItemProps } from '../../@types/props/CartItemProps'
 import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice'
 
 const CartItem = ({
+
   price,
   author,
   id,
   imageUrl,
   title,
-  count,
-  formats,
-  languages,
+  language,
+  count
+
 }: CartItemProps) => {
   const [activeFormat] = useState(0)
-  const [activeLanguage, setActiveLanguage] = useState(0)
+  const [activeLanguage] = useState(0)
   const dispatch = useDispatch()
+  const languageTypes = ['русский', 'английский'];
+  const formatNames = ['бумажная', 'электронная', 'аудиокнига']
 
   const addOnClick = () => {
     const item = {
@@ -25,8 +28,8 @@ const CartItem = ({
       price,
       imageUrl,
       author,
-      language: languages[activeLanguage],
-      format: formats[activeFormat],
+      language: languageTypes[activeLanguage],
+      format: formatNames[activeFormat],
     }
     dispatch(addItem(item))
   }
@@ -47,7 +50,7 @@ const CartItem = ({
       <div className="cart__item-info">
         <h3>{title}</h3>
         <p>{author}</p>
-        <p>см.</p>
+        <p>{language}</p>
       </div>
       <div className="cart__item-count">
         <button
@@ -102,7 +105,7 @@ const CartItem = ({
         </div>
       </div>
       <div className="cart__item-price">
-        <b>{price * count} ₽</b>
+        <b>{+price * count} ₽</b>
       </div>
       <div
         onKeyDown={addOnClick}
