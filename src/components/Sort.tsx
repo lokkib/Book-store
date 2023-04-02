@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { motion, AnimatePresence } from "framer-motion"
 import { setSorting } from '../redux/slices/filterSlice'
 import { RootState } from '../redux/store'
 import { SortItem } from '../@types/types/SortItem'
@@ -14,6 +15,31 @@ export const list: SortItem[] = [
   { name: 'алфавиту ↓', sortProperty: 'title' },
   { name: 'алфавиту ↑', sortProperty: '+title' },
 ]
+
+
+const subMenuAnimate = {
+  enter: {
+    opacity: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.5
+    },
+    display: "block"
+  },
+  exit: {
+    opacity: 0,
+    rotateX: -15,
+    transition: {
+      duration: 0.5,
+      delay: 0.3
+    },
+    transitionEnd: {
+      display: "none"
+    }
+  }
+};
+
+
 
 const Sort = React.memo(() => {
   const [isVisible, setIsVisible] = useState(false)
@@ -57,8 +83,12 @@ const Sort = React.memo(() => {
           {sort.name}
         </span>
       </div>
-      {isVisible ? (
-        <div className="sort__popup">
+      <AnimatePresence>
+      {isVisible && 
+        
+        <motion.div  exit={{ opacity: 0 }} initial="exit"
+        animate={isVisible ? "enter" : "exit"}
+        variants={subMenuAnimate} className="sort__popup">
           <ul>
             {list.map((obj, index) => (
               <li
@@ -79,10 +109,11 @@ const Sort = React.memo(() => {
               </li>
             ))}
           </ul>
-        </div>
-      ) : (
-        ''
-      )}
+        </motion.div>
+   
+      }
+      </AnimatePresence>
+     
     </div>
   )
 })

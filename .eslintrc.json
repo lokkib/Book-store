@@ -1,5 +1,6 @@
 {
   "settings": {
+    "import/core-modules": ["framer-motion"],
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
@@ -57,6 +58,7 @@
       }
     ],
     "no-console": 2,
+  
     "react/react-in-jsx-scope": "off",
     "prefer-destructuring": "off",
     "no-unused-vars": "off",

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { addItem } from '../../redux/slices/cartSlice'
 import { ProductBlockProps } from '../../@types/props/ProductBlockProps'
 import { RootState } from '../../redux/store'
+import { Format } from '../../@types/types/Product'
+
 
 const ProductBlock = ({
   id,
@@ -14,9 +16,9 @@ const ProductBlock = ({
   formats,
   languages,
 }: ProductBlockProps) => {
-  const [activeLanguage, setActiveLanguage] = useState(0)
-  const [activeFormat, setActiveFormat] = useState(0)
-  const [activeImage, setActiveImage] = useState(0)
+  const [activeLanguage, setActiveLanguage] = useState<number>(0)
+  const [activeFormat, setActiveFormat] = useState<number>(0)
+  const [activeImage, setActiveImage] = useState<number>(0)
   const languageTypes = ['русский', 'английский']
   const formatNames = ['бумажная', 'электронная', 'аудиокнига']
   const dispatch = useDispatch()
@@ -37,13 +39,16 @@ const ProductBlock = ({
   }
 
   const onClickAdd = () => {
+      const value = formats[activeFormat]
+      const chosenFormat = value[formatNames[activeFormat]]
+
     const itemProperties = {
       id,
       author,
       title,
-      price,
-      imageUrl,
-      language: languages[activeLanguage],
+      price: chosenFormat.price,
+      imageUrl: imageUrl[activeImage],
+      language: languageTypes[activeLanguage],
       format: formats[activeFormat],
     }
 
@@ -90,7 +95,7 @@ const ProductBlock = ({
               >
                 <li>{formatNames[index]}</li>
                 <p className="product-block__format-price">
-                  <i>{formatItem[formatNames[index]].price}</i>
+                  <i>{(formatItem)[formatNames[index] as keyof Format].price}</i>
                 </p>
               </div>
             ))}

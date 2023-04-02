@@ -14,3 +14,25 @@
   clip-path: inset(0 2ch 0 0);
   animation: loading 1s steps(4) infinite;
 }
+
+.product {
+  display: flex;
+}
+
+.product__item__block {
+  display: grid;
+}
+
+.product__item {
+  margin: 0 auto;
+  max-height: 650px;
+  width: 300px;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  img {
+    width: 300px;
+  }
+}
