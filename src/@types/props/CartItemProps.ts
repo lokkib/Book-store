@@ -2,10 +2,11 @@ import { Format } from '../types/Product'
 
 export type CartItemProps = {
   id: string
-  imageUrl: string[]
+  formatType: string
+  imageUrl: string | string[]
   title: string
   author: string
-  languages: string
+  language: string
   formats: Format[]
   price: number
   category: number

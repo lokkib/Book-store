@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import magazineLogo from '../assets/img/magazine-logo.svg'
+import storeLogo from '../assets/img/magazine-logo.svg'
 import Search from './Search'
 import { cartSelector } from '../redux/slices/cartSlice'
 import { Product } from '../@types/types/Product'
@@ -22,7 +22,7 @@ const Header = () => {
       <div className="container">
         <div className="header__logo">
           <Link to="/">
-            <img width="38" src={magazineLogo} alt="Pizza logo" />
+            <img width="38" src={storeLogo} alt="store logo" />
           </Link>
 
           <div className="header__heading">

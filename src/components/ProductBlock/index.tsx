@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addItem } from '../../redux/slices/cartSlice'
 import { ProductBlockProps } from '../../@types/props/ProductBlockProps'
-import { RootState } from '../../redux/store'
-import { Format } from '../../@types/types/Product'
 
+import { Format } from '../../@types/types/Product'
 
 const ProductBlock = ({
   id,
@@ -19,15 +18,10 @@ const ProductBlock = ({
   const [activeLanguage, setActiveLanguage] = useState<number>(0)
   const [activeFormat, setActiveFormat] = useState<number>(0)
   const [activeImage, setActiveImage] = useState<number>(0)
+  const [countButton, setCountButton] = useState<number>(0)
   const languageTypes = ['русский', 'английский']
   const formatNames = ['бумажная', 'электронная', 'аудиокнига']
   const dispatch = useDispatch()
-
-  const item = useSelector((state: RootState) =>
-    state.cart.items.find((el) => el.id === id)
-  )
-
-  const count = item ? item.count : 0
 
   const clickActiveLanguage = (index: number) => {
     setActiveLanguage(index)
@@ -39,8 +33,9 @@ const ProductBlock = ({
   }
 
   const onClickAdd = () => {
-      const value = formats[activeFormat]
-      const chosenFormat = value[formatNames[activeFormat]]
+    setCountButton(countButton + 1)
+    const value = formats[activeFormat]
+    const chosenFormat = value[formatNames[activeFormat] as keyof typeof value]
 
     const itemProperties = {
       id,
@@ -56,19 +51,19 @@ const ProductBlock = ({
   }
 
   return (
-    <div className="pizza-block-wrapper">
-      <div className="pizza-block">
+    <div className="product-block-wrapper">
+      <div className="product-block">
         <Link to={`/product/${id}`}>
           <img
-            className="pizza-block__image"
+            className="product-block__image"
             src={imageUrl[activeImage]}
-            alt="Pizza"
+            alt="product"
           />
         </Link>
 
-        <h4 className="pizza-block__title">{author}</h4>
+        <h4 className="product-block__title">{author}</h4>
         <p>{title}</p>
-        <div className="pizza-block__selector">
+        <div className="product-block__selector">
           <ul>
             {languages.map((el, index) => (
               <li
@@ -95,14 +90,14 @@ const ProductBlock = ({
               >
                 <li>{formatNames[index]}</li>
                 <p className="product-block__format-price">
-                  <i>{(formatItem)[formatNames[index] as keyof Format].price}</i>
+                  <i>{formatItem[formatNames[index] as keyof Format].price}</i>
                 </p>
               </div>
             ))}
           </ul>
         </div>
-        <div className="pizza-block__bottom">
-          <div className="pizza-block__price">от {price} ₽</div>
+        <div className="product-block__bottom">
+          <div className="product-block__price">от {price} ₽</div>
           <button
             onClick={onClickAdd}
             className="button button--outline button--add"
@@ -120,7 +115,7 @@ const ProductBlock = ({
               />
             </svg>
             <span>Добавить</span>
-            {!!count && <i>{count}</i>}
+            {!!countButton && <i>{countButton}</i>}
           </button>
         </div>
       </div>

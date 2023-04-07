@@ -5,20 +5,17 @@ import { CartItemProps } from '../../@types/props/CartItemProps'
 import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice'
 
 const CartItem = ({
-
+  formatType,
   price,
   author,
   id,
   imageUrl,
   title,
   language,
-  count
-
+  count,
 }: CartItemProps) => {
   const [activeFormat] = useState(0)
-  const [activeLanguage] = useState(0)
   const dispatch = useDispatch()
-  const languageTypes = ['русский', 'английский'];
   const formatNames = ['бумажная', 'электронная', 'аудиокнига']
 
   const addOnClick = () => {
@@ -28,34 +25,48 @@ const CartItem = ({
       price,
       imageUrl,
       author,
-      language: languageTypes[activeLanguage],
+      language,
       format: formatNames[activeFormat],
     }
     dispatch(addItem(item))
   }
 
-  const onClickMinus = (itemId: string, itemPrice: number) => {
-    dispatch(minusItem([itemId, itemPrice]))
+  const onClickMinus = (
+    itemId: string,
+    itemPrice: number,
+    bookLanguage: string
+  ) => {
+    dispatch(minusItem([itemId, itemPrice, bookLanguage]))
   }
 
-  const onClickRemove = (itemId: string) => {
-    dispatch(removeItem(itemId))
+  const onClickRemove = (
+    itemId: string,
+    itemPrice: number,
+    bookLanguage: string
+  ) => {
+    dispatch(removeItem([itemId, itemPrice, bookLanguage]))
   }
 
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+        <img
+          className="product-block__image"
+          src={imageUrl as string}
+          alt="product"
+        />
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
         <p>{author}</p>
-        <p>{language}</p>
+        <p>
+          {language}, {formatType}
+        </p>
       </div>
       <div className="cart__item-count">
         <button
           disabled={count === 1}
-          onClick={() => onClickMinus(id, price)}
+          onClick={() => onClickMinus(id, price, language)}
           className={clsx(
             ' button button--outline button--circle cart__item-count-minus',
             { 'cart__item-count-minus--disabled': count === 1 }
@@ -111,7 +122,7 @@ const CartItem = ({
         onKeyDown={addOnClick}
         tabIndex={0}
         role="button"
-        onClick={() => onClickRemove(id)}
+        onClick={() => onClickRemove(id, price, language)}
         className="cart__item-remove"
       >
         <div className="button button--outline button--circle">

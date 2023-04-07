@@ -8,11 +8,13 @@ export interface Format {
 
 export type Product = {
   id: string
+  formatType: string
   imageUrl: string[]
   title: string
   description: string
   author: string
   languages: number[]
+  language: string
   formats: Format[]
   price: number
   category: number

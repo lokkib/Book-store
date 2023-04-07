@@ -53,7 +53,6 @@ const Home = () => {
     window.scrollTo(0, 0)
 
     getProducts()
-    
   }, [categoryID, sortType, currentPage])
 
   useEffect(() => {
@@ -61,9 +60,9 @@ const Home = () => {
       dispatch(setCategoryID(0))
       dispatch(setPage(1))
     }
-  },[])
+  }, [])
 
-  const pizzas = items
+  const products = items
     .filter((obj: Product) =>
       obj.author
         ? obj.author
@@ -100,7 +99,7 @@ const Home = () => {
         </div>
       )}
       <div className="content__items">
-        {status === 'loading' ? skeletons : pizzas}
+        {status === 'loading' ? skeletons : products}
       </div>
       {status === 'access' && (
         <Pagination value={currentPage} fetchingPageOnClick={onChangePage} />

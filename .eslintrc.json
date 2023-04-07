@@ -58,7 +58,8 @@
       }
     ],
     "no-console": 2,
-  
+    "import/no-extraneous-dependencies": "off",
+    "prefer-const": "off",
     "react/react-in-jsx-scope": "off",
     "prefer-destructuring": "off",
     "no-unused-vars": "off",

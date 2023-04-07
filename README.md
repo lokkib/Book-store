@@ -6,7 +6,6 @@ Book project
 
 "category": 1, - для детей
 
-
-Category 3 -  иностранные языки
+Category 3 - иностранные языки
 
 5 -бизнес
