@@ -9,6 +9,7 @@ type Format = {
 export type ProductBlockProps = {
   id: string
   imageUrl: string[]
+
   author: string
   title: string
   languages: number[]

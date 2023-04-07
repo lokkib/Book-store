@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from 'framer-motion'
 import { setSorting } from '../redux/slices/filterSlice'
 import { RootState } from '../redux/store'
 import { SortItem } from '../@types/types/SortItem'
@@ -16,30 +16,27 @@ export const list: SortItem[] = [
   { name: 'алфавиту ↑', sortProperty: '+title' },
 ]
 
-
 const subMenuAnimate = {
   enter: {
     opacity: 1,
     rotateX: 0,
     transition: {
-      duration: 0.5
+      duration: 0.5,
     },
-    display: "block"
+    display: 'block',
   },
   exit: {
     opacity: 0,
     rotateX: -15,
     transition: {
       duration: 0.5,
-      delay: 0.3
+      delay: 0.3,
     },
     transitionEnd: {
-      display: "none"
-    }
-  }
-};
-
-
+      display: 'none',
+    },
+  },
+}
 
 const Sort = React.memo(() => {
   const [isVisible, setIsVisible] = useState(false)
@@ -84,36 +81,37 @@ const Sort = React.memo(() => {
         </span>
       </div>
       <AnimatePresence>
-      {isVisible && 
-        
-        <motion.div  exit={{ opacity: 0 }} initial="exit"
-        animate={isVisible ? "enter" : "exit"}
-        variants={subMenuAnimate} className="sort__popup">
-          <ul>
-            {list.map((obj, index) => (
-              <li
-                onKeyDown={() => {
-                  clickFilter(obj)
-                }}
-                role="button"
-                tabIndex={0}
-                onClick={() => {
-                  clickFilter(obj)
-                }}
-                className={
-                  sort.sortProperty === obj.sortProperty ? 'active' : ''
-                }
-                key={index}
-              >
-                {obj.name}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-   
-      }
+        {isVisible && (
+          <motion.div
+            exit={{ opacity: 0 }}
+            initial="exit"
+            animate={isVisible ? 'enter' : 'exit'}
+            variants={subMenuAnimate}
+            className="sort__popup"
+          >
+            <ul>
+              {list.map((obj, index) => (
+                <li
+                  onKeyDown={() => {
+                    clickFilter(obj)
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => {
+                    clickFilter(obj)
+                  }}
+                  className={
+                    sort.sortProperty === obj.sortProperty ? 'active' : ''
+                  }
+                  key={index}
+                >
+                  {obj.name}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
       </AnimatePresence>
-     
     </div>
   )
 })

@@ -12,32 +12,47 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const findItem = state.items.find((el) => el.id === action.payload.id)
+      const format = action.payload.format
+      const formatType = Object.keys(format)[0]
+      const price = format[formatType].price
 
+      const findItem = state.items.find(
+        (el) =>
+          el.id === action.payload.id &&
+          el.language === action.payload.language &&
+          el.price === action.payload.price
+      )
       if (findItem) {
         findItem.count += 1
       } else {
         state.items.push({
           ...action.payload,
           count: 1,
-          price: action.payload.price,
+          formatType,
+          price,
         })
       }
+
       state.totalPrice = state.items.reduce((ac, el) => {
         ac += el.count * el.price
         return ac
       }, 0)
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter((el) => el.id !== action.payload)
+      const [id, price, language] = action.payload
+      state.items = state.items.filter((el) => {
+        return el.id !== id || el.price !== price || el.language !== language
+      })
       state.totalPrice = state.items.reduce((ac, el) => {
         ac += el.count * el.price
         return ac
       }, 0)
     },
     minusItem: (state, action) => {
-      const [id] = action.payload
-      const findItem = state.items.find((el) => el.id === id)
+      const [id, price, language] = action.payload
+      const findItem = state.items.find(
+        (el) => el.id === id && el.price === price && el.language === language
+      )
       if (findItem) {
         findItem.count -= 1
       }

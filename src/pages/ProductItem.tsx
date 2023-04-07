@@ -6,15 +6,12 @@ import styles from './style.module.scss'
 import { Product } from '../@types/types/Product'
 import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack'
 
-
 const ProductItem = () => {
   const navigate = useNavigate()
   const [product, setProduct] = useState<Product>()
   const [bookRating, setRating] = useState<number>(0)
   const { id } = useParams()
 
-
-  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -38,38 +35,34 @@ const ProductItem = () => {
     )
   }
 
-
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-     className={styles.product__item__block}
+      className={styles.product__item__block}
     >
-        <ButtonGoBack />
-        <div className={styles.product}>
-        <div  className={styles.product__item}>
-      <img src={product.imageUrl[0]} alt="product" />
-      <h2>{product.title}</h2>
-      <h4>от {product.price} ₽</h4>
-     
-      </div>
-        <div className={styles.product__item__rating}>
-       
-        { bookRating ? [...new Array(bookRating )].map((_, ind) => {
-          return <span key={ind}>⭐</span>
-        }) : ''}
-      </div>
+      <ButtonGoBack />
+      <div className={styles.product}>
+        <div className={styles.product__item}>
+          <img src={product.imageUrl[0]} alt="product" />
+          <h2>{product.title}</h2>
+          <h4>от {product.price} ₽</h4>
         </div>
-     
-      
+        <div className={styles.product__item__rating}>
+          {bookRating
+            ? [...new Array(bookRating)].map((_, ind) => {
+                return <span key={ind}>⭐</span>
+              })
+            : ''}
+        </div>
+      </div>
+
       <div>
         <h3>Описание</h3>
         <p>{product.description}</p>
       </div>
-    
     </motion.div>
   )
 }
