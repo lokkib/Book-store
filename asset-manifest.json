@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/Book-store/static/css/main.a2513ac0.css",
-    "main.js": "/Book-store/static/js/main.18e58171.js",
+    "main.js": "/Book-store/static/js/main.9c754653.js",
     "static/css/871.08bed2b9.chunk.css": "/Book-store/static/css/871.08bed2b9.chunk.css",
-    "static/js/871.533f7ff3.chunk.js": "/Book-store/static/js/871.533f7ff3.chunk.js",
+    "static/js/871.e15b6fc7.chunk.js": "/Book-store/static/js/871.e15b6fc7.chunk.js",
     "static/css/361.0792c561.chunk.css": "/Book-store/static/css/361.0792c561.chunk.css",
-    "static/js/361.21956acc.chunk.js": "/Book-store/static/js/361.21956acc.chunk.js",
+    "static/js/361.f8e8d117.chunk.js": "/Book-store/static/js/361.f8e8d117.chunk.js",
     "static/css/310.fe00749d.chunk.css": "/Book-store/static/css/310.fe00749d.chunk.css",
     "static/js/310.36bdb89f.chunk.js": "/Book-store/static/js/310.36bdb89f.chunk.js",
     "static/media/background.jpg": "/Book-store/static/media/background.4b0f542626a3595ac5c3.jpg",
@@ -13,16 +13,16 @@
     "static/media/magazine-logo.svg": "/Book-store/static/media/magazine-logo.0e7ae1ff2750c3b5d126de24701fab82.svg",
     "index.html": "/Book-store/index.html",
     "main.a2513ac0.css.map": "/Book-store/static/css/main.a2513ac0.css.map",
-    "main.18e58171.js.map": "/Book-store/static/js/main.18e58171.js.map",
+    "main.9c754653.js.map": "/Book-store/static/js/main.9c754653.js.map",
     "871.08bed2b9.chunk.css.map": "/Book-store/static/css/871.08bed2b9.chunk.css.map",
-    "871.533f7ff3.chunk.js.map": "/Book-store/static/js/871.533f7ff3.chunk.js.map",
+    "871.e15b6fc7.chunk.js.map": "/Book-store/static/js/871.e15b6fc7.chunk.js.map",
     "361.0792c561.chunk.css.map": "/Book-store/static/css/361.0792c561.chunk.css.map",
-    "361.21956acc.chunk.js.map": "/Book-store/static/js/361.21956acc.chunk.js.map",
+    "361.f8e8d117.chunk.js.map": "/Book-store/static/js/361.f8e8d117.chunk.js.map",
     "310.fe00749d.chunk.css.map": "/Book-store/static/css/310.fe00749d.chunk.css.map",
     "310.36bdb89f.chunk.js.map": "/Book-store/static/js/310.36bdb89f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a2513ac0.css",
-    "static/js/main.18e58171.js"
+    "static/js/main.9c754653.js"
   ]
 }
