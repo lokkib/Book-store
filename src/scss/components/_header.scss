@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: space-between;
 
-    @media (max-width: 700px) {
+    @media (max-width: 890px) {
       flex-direction: column-reverse;
       gap: 20px;
     }
@@ -19,6 +19,10 @@
     display: flex;
     img {
       margin-right: 15px;
+
+      @media (max-width: 840px) {
+        width: 30px;
+      }
     }
 
     h1 {
@@ -34,8 +38,14 @@
     }
   }
   &__heading {
-    @media (max-width: 700px) {
+    @media (max-width: 735px) {
       text-align: center;
+    }
+
+    h1 {
+      @media (min-width: 350px) and (max-width: 735px) {
+        font-size: 20px;
+      }
     }
   }
 }

@@ -22,7 +22,7 @@ body {
   &__title {
     margin: 35px 0;
 
-    @media (max-width: 700px) {
+    @media (max-width: 735px) {
       text-align: center;
     }
   }
@@ -42,7 +42,7 @@ body {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 730px) {
+    @media (max-width: 775px) {
       grid-template-columns: repeat(1, 1fr);
     }
   }
@@ -90,11 +90,20 @@ body {
     align-items: center;
     font-size: 32px;
 
+    @media (max-width: 840px) {
+      font-size: 24px;
+    }
+
     svg {
       top: -2px;
       width: 30px;
       height: 30px;
       margin-right: 10px;
+
+      @media (max-width: 840px) {
+        width: 20px;
+        height: 20px;
+      }
       path {
         stroke: $black;
         stroke-width: 1.9;
@@ -113,6 +122,10 @@ body {
       margin-left: 7px;
       color: #b6b6b6;
       font-size: 18px;
+
+      @media (max-width: 840px) {
+        font-size: 14px;
+      }
     }
 
     span,
@@ -140,15 +153,33 @@ body {
     padding-top: 30px;
     margin-top: 30px;
 
+    @media (max-width: 840px) {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+
     &-img {
       display: flex;
       align-items: center;
       margin-right: 15px;
       width: 10%;
 
+      @media (max-width: 840px) {
+        width: 15%;
+        margin-right: 0;
+      }
+
       img {
         width: 70px;
         height: 90px;
+
+        @media (max-width: 840px) {
+          width: 100%;
+          min-width: 53px;
+          max-width: 65px;
+        }
       }
     }
 
@@ -158,16 +189,32 @@ body {
       justify-content: center;
       width: 40%;
 
+      @media (max-width: 840px) {
+        max-width: 200px;
+      }
+
       h3 {
         font-weight: bold;
         font-size: 22px;
         line-height: 27px;
         letter-spacing: 0.01em;
+
+        @media (max-width: 840px) {
+          font-size: 16px;
+          line-height: 17px;
+          text-align: center;
+        }
       }
 
       p {
         font-size: 18px;
         color: #8d8d8d;
+
+        @media (max-width: 840px) {
+          font-size: 12px;
+          line-height: 17px;
+          text-align: center;
+        }
       }
     }
 
@@ -177,6 +224,14 @@ body {
       justify-content: space-between;
       width: 13%;
 
+      @media (max-width: 840px) {
+        all: revert;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+      }
+
       &-minus {
         svg {
           path:first-of-type {
@@ -185,7 +240,6 @@ body {
         }
 
         &--disabled {
-          opacity: 0.3;
           border-color: #b59b90;
 
           &:active {
@@ -208,6 +262,10 @@ body {
 
       b {
         font-size: 22px;
+
+        @media (max-width: 840px) {
+          font-size: 18px;
+        }
       }
     }
 
@@ -221,6 +279,10 @@ body {
         font-weight: bold;
         font-size: 22px;
         letter-spacing: 0.01em;
+
+        @media (max-width: 840px) {
+          font-size: 18px;
+        }
       }
     }
 
@@ -229,6 +291,13 @@ body {
       align-items: center;
       justify-content: flex-end;
       width: 4%;
+
+      @media (max-width: 840px) {
+        all: revert;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
 
       .button {
         border-color: darken($color: $gray-line, $amount: 10);
@@ -267,6 +336,10 @@ body {
       span {
         font-size: 22px;
 
+        @media (max-width: 840px) {
+          font-size: 16px;
+        }
+
         &:last-of-type {
           b {
             color: $light-purple;
@@ -284,11 +357,22 @@ body {
       gap: 20px;
       width: 210px;
 
+      @media (max-width: 840px) {
+        margin: 0 auto;
+        margin-top: 30px;
+      }
+
       .pay-btn {
         font-size: 16px;
         font-weight: 600;
         width: 210px;
         padding: 16px;
+
+        @media (max-width: 840px) {
+          width: revert;
+          font-size: 14px;
+          padding: 10px;
+        }
 
         button {
           color: #fff;
@@ -307,9 +391,19 @@ body {
     width: 560px;
     text-align: center;
 
+    @media (min-width: 350px) and (max-width: 840px) {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+    }
+
     h2 {
       font-size: 32px;
       margin-bottom: 10px;
+
+      @media (max-width: 840px) {
+        font-size: 24px;
+      }
     }
 
     p {
@@ -317,6 +411,10 @@ body {
       line-height: 145.4%;
       letter-spacing: 0.01em;
       color: #777777;
+
+      @media (max-width: 840px) {
+        font-size: 14px;
+      }
     }
 
     icon {
@@ -328,6 +426,10 @@ body {
       display: block;
       width: 300px;
       margin: 45px auto 60px;
+
+      @media (max-width: 840px) {
+        width: 200px;
+      }
     }
 
     .button--black {
@@ -336,10 +438,20 @@ body {
       margin: 0 auto;
       font-weight: 600;
       font-size: 18px;
+
+      @media (max-width: 840px) {
+        width: 150px;
+        padding: 8px 0 8px;
+      }
+
+      span {
+        @media (max-width: 840px) {
+          font-size: 14px;
+        }
+      }
     }
   }
 }
-
 .button--add {
   display: flex;
   align-items: center;
@@ -353,4 +465,17 @@ body {
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+
+.button.button--outline.button--add.go-back-btn {
+  @media (max-width: 840px) {
+    padding: 5px 5px;
+    margin-bottom: 10px;
+  }
+
+  span {
+    @media (max-width: 840px) {
+      font-size: 14px;
+    }
+  }
 }

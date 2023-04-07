@@ -4,12 +4,15 @@ import * as Yup from 'yup'
 
 import { useDispatch } from 'react-redux'
 import { Formik, Form } from 'formik'
-import { closePayingForm } from '../../redux/slices/payingFormSlice'
+
+import {
+  closePayingForm,
+  showSuccessNotification,
+} from '../../redux/slices/payingFormSlice'
 import ButtonClose from './ButtonClose/ButtonClose'
 import styles from './style.module.scss'
 import 'react-credit-cards-2/dist/lib/styles.scss'
 import { PayingFormProps } from '../../@types/props/PayingFormProps'
-import SuccessPayment from '../SuccessPayment/SuccessPayment'
 
 const SignupSchema = Yup.object().shape({
   number: Yup.string()
@@ -79,12 +82,11 @@ const PayingForm = ({ onClick }: PayingFormProps) => {
 
   const handleSubmit = () => {
     dispatch(closePayingForm(false))
-    setSuccessNotification(true)
+    dispatch(showSuccessNotification(true))
   }
 
   return (
     <div className={styles.card__block}>
-      <SuccessPayment />
       <ButtonClose classType="miniCloseLine" onClick={onClick} />
       <div className={styles.card__block__form}>
         <div className={styles.card__block__inner}>

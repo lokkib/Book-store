@@ -59,7 +59,7 @@ const ProductItem = () => {
         </div>
       </div>
 
-      <div>
+      <div className={styles.product__description}>
         <h3>Описание</h3>
         <p>{product.description}</p>
       </div>
