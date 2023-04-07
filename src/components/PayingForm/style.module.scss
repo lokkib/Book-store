@@ -28,10 +28,34 @@
   background-color: aliceblue;
   width: 500px;
   min-height: 600px;
+
+  @media (max-width: 600px) {
+    width: 350px;
+  }
+  @media (max-width: 470px) {
+    width: 250px;
+  }
+}
+
+:global .rccs {
+  @media (max-width: 470px) {
+    width: revert;
+  }
+}
+
+:global .rccs__card.rccs__card--unknown {
+  @media (max-width: 470px) {
+    width: 240px;
+    height: 140px;
+  }
 }
 
 .card__block__inner {
   margin-bottom: 10px;
+
+  @media (max-width: 470px) {
+    width: 240px;
+  }
 }
 
 .form {

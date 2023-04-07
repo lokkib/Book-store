@@ -38,6 +38,10 @@ h2 {
   font-weight: 600;
   font-size: 28px;
   line-height: 30px;
+
+  @media (max-width: 775px) {
+    font-size: 22px;
+  }
 }
 
 a {

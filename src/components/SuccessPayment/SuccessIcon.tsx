@@ -1,10 +1,10 @@
 const SuccessIcon = () => {
   return (
     <svg
-      height="200"
-      viewBox="0 0 10 10"
+      height="150"
+      viewBox="0 0 40 40"
       version="1.1"
-      width="200"
+      width="150"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g transform="translate(0 -1028.4)">

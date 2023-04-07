@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect } from 'react'
 import styles from './style.module.scss'
 import CartItem from '../components/CartItem/CartItem'
 import { cartSelector, clearItems } from '../redux/slices/cartSlice'
@@ -10,34 +11,27 @@ import PayingForm from '../components/PayingForm/PayingForm'
 import { RootState } from '../redux/store'
 import {
   closePayingForm,
+  hideSuccessNotification,
   openPayingForm,
 } from '../redux/slices/payingFormSlice'
-
-const backdrop = {
-  hidden: {
-    y: '-200px',
-    opacity: 0,
-  },
-  visible: {
-    y: '0px',
-    opacity: 1,
-    transition: {
-      delay: 0.1,
-      duration: 0.7,
-    },
-  },
-  exit: {
-    y: '-200px',
-    opacity: 0,
-    transition: {
-      duration: 0.3,
-    },
-  },
-}
+import backdrop from '../constants/animation'
+import SuccessPayment from '../components/SuccessPayment/SuccessPayment'
 
 const Cart = () => {
   const dispatch = useDispatch()
   const { items, totalPrice } = useSelector(cartSelector)
+
+  const successNotIfication = useSelector(
+    (state: RootState) => state.payingFormReducer.successNotification
+  )
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(hideSuccessNotification(false))
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [successNotIfication])
 
   const onClickClearItems = () => {
     dispatch(clearItems())
@@ -60,6 +54,21 @@ const Cart = () => {
 
   return (
     <>
+      <AnimatePresence>
+        {successNotIfication && (
+          <motion.div
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={
+              successNotIfication ? styles.modalBlock : styles.modalDisplayNone
+            }
+          >
+            <SuccessPayment />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {isPayingFormOpen && (
           <motion.div
