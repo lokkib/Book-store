@@ -21,7 +21,7 @@ const Header = () => {
     <div className="header">
       <div className="container">
         <div className="header__logo">
-          <Link to="/">
+          <Link to="/Book-store/">
             <img width="38" src={storeLogo} alt="store logo" />
           </Link>
 
@@ -30,7 +30,7 @@ const Header = () => {
             <p>занимательное чтиво!</p>
           </div>
         </div>
-        {pathname === '/' && <Search />}
+        {pathname === '/Book-store/' && <Search />}
 
         <div className="header__cart">
           {pathname !== '/cart' && (

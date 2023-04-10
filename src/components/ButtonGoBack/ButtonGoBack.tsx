@@ -3,7 +3,10 @@ import { Link, useLocation } from 'react-router-dom'
 const ButtonGoBack = () => {
   const { pathname } = useLocation()
   return (
-    <Link to="/" className="button button--outline button--add go-back-btn">
+    <Link
+      to="/Book-store/"
+      className="button button--outline button--add go-back-btn"
+    >
       <svg
         width="8"
         height="14"
