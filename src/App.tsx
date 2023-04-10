@@ -15,7 +15,7 @@ const App = () => {
     <AnimatePresence>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/Book-store/" element={<Home />} />
           <Route
             path="product/:id"
             element={

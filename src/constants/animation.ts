@@ -8,11 +8,10 @@ const backdrop = {
     opacity: 1,
     transition: {
       delay: 0.1,
-      duration: 1,
+      duration: 0.8,
     },
   },
   exit: {
-    y: '500px',
     opacity: 0,
     transition: {
       duration: 0.7,

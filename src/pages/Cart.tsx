@@ -28,7 +28,7 @@ const Cart = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(hideSuccessNotification(false))
-    }, 5000)
+    }, 1500)
 
     return () => clearTimeout(timer)
   }, [successNotIfication])
